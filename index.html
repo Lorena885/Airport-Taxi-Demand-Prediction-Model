@@ -627,6 +627,9 @@
 
     async function loadCsv(path) {
       const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Could not load ${path}: ${response.status}`);
+      }
       const text = await response.text();
       return Papa.parse(text, { header: true, dynamicTyping: true, skipEmptyLines: true }).data;
     }
@@ -779,9 +782,9 @@
 
     async function init() {
       const [history, predictions, summaryRows] = await Promise.all([
-        loadCsv("taxi_hourly_history.csv"),
-        loadCsv("taxi_model_predictions.csv"),
-        loadCsv("taxi_dashboard_summary.csv")
+        loadCsv("dashboard/taxi_hourly_history.csv"),
+        loadCsv("dashboard/taxi_model_predictions.csv"),
+        loadCsv("dashboard/taxi_dashboard_summary.csv")
       ]);
 
       renderKpis(summaryRows[0]);
