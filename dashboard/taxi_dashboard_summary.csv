@@ -1,0 +1,2 @@
+rmse,total_orders,avg_orders_per_hour,max_orders_hour,start_date,end_date,test_rows
+40.898393583984635,372811,84.42278079710145,462,2018-03-01T00:00:00,2018-08-31T23:00:00,442
